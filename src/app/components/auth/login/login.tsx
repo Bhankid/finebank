@@ -110,7 +110,7 @@ const Login = () => {
 
         <div className="mb-4">
         <button
-            className="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline flex items-center justify-center cursor-pointer whitespace-nowrap"
+            className="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline flex items-center justify-center cursor-pointer whitespace-nowrap"
             type="button"
         >
             <Image 

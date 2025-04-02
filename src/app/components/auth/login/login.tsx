@@ -37,7 +37,7 @@ const Login = () => {
             Email Address
           </label>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="email"
             type="email"
             placeholder="johndoe@email.com"
@@ -53,7 +53,7 @@ const Login = () => {
           </label>
           <div className="relative">
             <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="password"
               type={showPassword ? "text" : "password"}
               placeholder="**********"
@@ -81,10 +81,10 @@ const Login = () => {
         </div>
         
         <div className="mb-4">
-          <label className="inline-flex items-center">
+          <label className="inline-flex items-center cursor-pointer">
             <input 
               type="checkbox" 
-              className="form-checkbox text-teal-600"
+              className="form-checkbox text-teal-600 cursor-pointer"
               checked={rememberMe}
               onChange={(e) => setRememberMe(e.target.checked)}
             />
@@ -94,7 +94,7 @@ const Login = () => {
         
         <div className="mb-4">
           <button
-            className="w-full bg-teal-600 hover:bg-teal-700 cursor-pointer text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="w-full bg-teal-600 hover:bg-teal-700 cursor-pointer text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline"
             type="submit"
           >
             Login

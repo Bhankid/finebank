@@ -46,7 +46,7 @@ const WelcomeCard: FC = () => {
       
       <button 
         onClick={handleGetStarted}
-        className="bg-teal-600 hover:bg-teal-700 text-white py-3 px-6 rounded-full text-lg mb-6 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50 cursor-pointer"
+        className="bg-teal-600 hover:bg-teal-700 text-white py-2 px-6 rounded-full text-lg mb-6 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50 cursor-pointer"
       >
         Get Started
       </button>

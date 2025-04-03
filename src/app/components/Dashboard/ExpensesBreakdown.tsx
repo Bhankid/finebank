@@ -12,12 +12,15 @@ interface ExpenseCardProps {
 }
 
 const ExpenseCard: React.FC<ExpenseCardProps> = ({ icon, category, amount, percentage, trend }) => (
-  <div className="flex flex-col items-center bg-white p-4 rounded-lg shadow-md w-full">
-    <div className="bg-gray-100 p-3 rounded-full mb-2 relative w-14 h-14 flex items-center justify-center">
-      <Image 
-        src={icon} 
-        alt={`${category} icon`} 
-        width={32} 
+  <div className="flex flex-col items-center p-4 w-full relative">
+    {/* Vertical separator line (right border) */}
+    <div className="absolute right-0 top-4 bottom-4 border-r border-gray-200"></div>
+    
+    <div className="bg-gray-100 p-3 rounded-full mb-2 w-14 h-14 flex items-center justify-center">
+      <Image
+        src={icon}
+        alt={`${category} icon`}
+        width={32}
         height={32}
         className="object-contain"
       />
@@ -101,17 +104,36 @@ const ExpensesBreakdown: React.FC<ExpensesBreakdownProps> = ({
           <h1 className="text-xl font-semibold text-gray-700">Expenses Breakdown</h1>
           <div className="text-sm text-gray-500">*Compare to last month</div>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {expenses.map((expense, index) => (
-            <ExpenseCard
-              key={index}
-              icon={expense.icon}
-              category={expense.category}
-              amount={expense.amount}
-              percentage={expense.percentage}
-              trend={expense.trend as 'up' | 'down'}
-            />
-          ))}
+        
+        {/* Grid with 3 columns and horizontal dividers between rows */}
+        <div className="grid grid-cols-3 divide-y divide-gray-200">
+          {/* First row */}
+          <div className="col-span-3 grid grid-cols-3">
+            {expenses.slice(0, 3).map((expense, index) => (
+              <ExpenseCard
+                key={index}
+                icon={expense.icon}
+                category={expense.category}
+                amount={expense.amount}
+                percentage={expense.percentage}
+                trend={expense.trend as 'up' | 'down'}
+              />
+            ))}
+          </div>
+          
+          {/* Second row */}
+          <div className="col-span-3 grid grid-cols-3">
+            {expenses.slice(3, 6).map((expense, index) => (
+              <ExpenseCard
+                key={index + 3}
+                icon={expense.icon}
+                category={expense.category}
+                amount={expense.amount}
+                percentage={expense.percentage}
+                trend={expense.trend as 'up' | 'down'}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>

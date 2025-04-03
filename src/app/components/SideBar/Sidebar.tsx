@@ -26,7 +26,7 @@ type NavItem = {
 
 const Sidebar = () => {
   const pathname = usePathname();
-  const [userName, setUserName] = useState('Tanzir Rahman');
+  const [userName] = useState('Tanzir Rahman');
 
   const navItems: NavItem[] = [
     { name: 'Overview', path: '/dashboard', icon: <FaTachometerAlt className="mr-3" /> },

@@ -2,6 +2,7 @@ import { FC } from 'react';
 import Header from '@/app/components/Header/Header';
 import DashboardSummary from '../components/DashboardSummary/DashboardSummary';
 import Sidebar from '../components/SideBar/Sidebar';
+import RecentTransaction from '../components/Dashboard/RecentTransaction';
 
 const DashboardPage: FC = () => {
   return (
@@ -19,12 +20,7 @@ const DashboardPage: FC = () => {
           <h1 className="text-2xl font-bold text-gray-800 mb-6">Dashboard Overview</h1>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Summary Card 1 */}
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <h2 className="text-lg font-semibold text-gray-700 mb-2">Total Balance</h2>
-              <p className="text-3xl font-bold text-teal-600">$24,562.00</p>
-              <p className="text-sm text-gray-500 mt-2">Updated 2 hours ago</p>
-            </div>
+           <RecentTransaction />
             
             {/* Summary Card 2 */}
             <div className="bg-white p-6 rounded-lg shadow-sm">

@@ -81,7 +81,7 @@ const Sidebar = () => {
       <div>
         <button 
           onClick={handleLogout}
-          className="flex items-center w-full p-2 mb-4 text-gray-300 hover:bg-gray-800 hover:text-white rounded-md transition-colors duration-200"
+          className="flex items-center w-full p-2 mb-4 text-gray-300 hover:bg-gray-800 hover:text-white rounded-md transition-colors duration-200 cursor-pointer"
         >
           <FaSignOutAlt className="mr-3" />
           <span>Logout</span>
@@ -106,7 +106,7 @@ const Sidebar = () => {
               View profile
             </Link>
           </div>
-          <button className="ml-auto text-gray-400 hover:text-white">
+          <button className="ml-auto text-gray-400 hover:text-white cursor-pointer">
             <FaEllipsisV />
           </button>
         </div>

@@ -2,56 +2,12 @@
 
 import TotalBalance from './TotalBalance';
 import Goals from './Goals';
+import UpcomingBill from './UpcomingBill';
 
 
 
-interface Bill {
-  name: string;
-  description: string;
-  amount: number;
-  dueDate: Date;
-  lastCharge: Date;
-}
 
 const DashboardSummary: React.FC = () => {
-
-  
-  
-  const bills: Bill[] = [
-    {
-      name: 'Figma',
-      description: 'Figma - Monthly',
-      amount: 150,
-      dueDate: new Date(2023, 4, 15), // May 15, 2023
-      lastCharge: new Date(2022, 4, 14) // May 14, 2022
-    },
-    {
-      name: 'Adobe',
-      description: 'Adobe - Yearly',
-      amount: 559,
-      dueDate: new Date(2023, 5, 16), // June 16, 2023
-      lastCharge: new Date(2023, 5, 17) // June 17, 2023
-    }
-  ];
-  
-  
-  // Format date to display
-  const formatDate = (date: Date): string => {
-    return new Intl.DateTimeFormat('en-US', {
-      day: 'numeric',
-      month: 'short',
-      year: 'numeric'
-    }).format(date);
-  };
-  
-  // Format currency
-  const formatCurrency = (amount: number): string => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      maximumFractionDigits: 0
-    }).format(amount);
-  };
 
   return (
     <div className="p-6">
@@ -151,7 +107,7 @@ const DashboardSummary: React.FC = () => {
         <Goals />
 
         {/* Upcoming Bill */}
-        <div className="bg-white p-6 rounded-lg shadow-md">
+        {/* <div className="bg-white p-6 rounded-lg shadow-md">
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-gray-500 text-lg">Upcoming Bill</h2>
             <button className="text-gray-500 hover:text-teal-600 transition-colors">View All &gt;</button>
@@ -173,7 +129,8 @@ const DashboardSummary: React.FC = () => {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
+        <UpcomingBill />
       </div>
     </div>
   );

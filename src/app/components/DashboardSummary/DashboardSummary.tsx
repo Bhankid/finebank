@@ -1,21 +1,9 @@
 'use client';
 
-import { useState } from 'react';
-import { FaArrowRight, FaPencilAlt, FaTrophy, FaBullseye } from 'react-icons/fa';
+import TotalBalance from './TotalBalance';
+import Goals from './Goals';
 
-interface CardAccount {
-  type: string;
-  name: string;
-  number: string;
-  balance: number;
-}
 
-interface Goal {
-  target: number;
-  achieved: number;
-  month: string;
-  year: number;
-}
 
 interface Bill {
   name: string;
@@ -26,21 +14,8 @@ interface Bill {
 }
 
 const DashboardSummary: React.FC = () => {
-  const [currentCardIndex, setCurrentCardIndex] = useState<number>(0);
+
   
-  // Sample data
-  const accounts: CardAccount[] = [
-    { type: 'Credit Card', name: 'Visa', number: '**** **** **** 2598', balance: 25000 },
-    { type: 'Checking', name: 'Chase', number: '**** **** **** 4321', balance: 12500 },
-    { type: 'Savings', name: 'Bank of America', number: '**** **** **** 8765', balance: 45000 },
-  ];
-  
-  const goal: Goal = {
-    target: 20000,
-    achieved: 12500,
-    month: 'May',
-    year: 2023
-  };
   
   const bills: Bill[] = [
     {
@@ -59,20 +34,6 @@ const DashboardSummary: React.FC = () => {
     }
   ];
   
-  const totalBalance = accounts.reduce((sum, account) => sum + account.balance, 0);
-  const currentAccount = accounts[currentCardIndex];
-  
-  const handlePrevious = () => {
-    setCurrentCardIndex((prev) => (prev === 0 ? accounts.length - 1 : prev - 1));
-  };
-  
-  const handleNext = () => {
-    setCurrentCardIndex((prev) => (prev === accounts.length - 1 ? 0 : prev + 1));
-  };
-  
-  // Calculate goal progress percentage
-  const goalProgress = Math.round((goal.achieved / goal.target) * 100);
-  const strokeDashoffset = 251 - (251 * goalProgress) / 100; // 251 is approx 2*PI*40
   
   // Format date to display
   const formatDate = (date: Date): string => {
@@ -96,7 +57,7 @@ const DashboardSummary: React.FC = () => {
     <div className="p-6">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Total Balance */}
-        <div className="bg-white p-6 rounded-lg shadow-md">
+        {/* <div className="bg-white p-6 rounded-lg shadow-md">
           <h2 className="text-gray-500 text-lg mb-2">Total Balance</h2>
           <h1 className="text-3xl font-bold mb-4">{formatCurrency(totalBalance)}</h1>
           <p className="text-gray-500 mb-4">All Accounts</p>
@@ -137,10 +98,11 @@ const DashboardSummary: React.FC = () => {
               Next &gt;
             </button>
           </div>
-        </div>
+        </div> */}
+        <TotalBalance />
 
         {/* Goals */}
-        <div className="bg-white p-6 rounded-lg shadow-md">
+        {/* <div className="bg-white p-6 rounded-lg shadow-md">
           <h2 className="text-gray-500 text-lg mb-2">Goals</h2>
           <div className="flex justify-between items-center mb-4">
             <h1 className="text-3xl font-bold">{formatCurrency(goal.target)}</h1>
@@ -185,7 +147,8 @@ const DashboardSummary: React.FC = () => {
             </div>
           </div>
           <p className="text-center text-gray-500 mt-2">Target vs Achievement</p>
-        </div>
+        </div> */}
+        <Goals />
 
         {/* Upcoming Bill */}
         <div className="bg-white p-6 rounded-lg shadow-md">

@@ -1,5 +1,6 @@
 'use client';
 
+import AccountActions from '@/app/components/CreditCardBalance/AccountActions';
 import CheckingAccount from '@/app/components/CreditCardBalance/CheckingAccount';
 import CreditCardBalance from '@/app/components/CreditCardBalance/CreditCardBalance';
 import InvestmentCard from '@/app/components/CreditCardBalance/InvestmentCard';
@@ -25,6 +26,7 @@ const BalancePage = () => {
           <SavingsAccount />
           <InvestmentCard />
           <LoanCard />
+          <AccountActions />
         </div> 
       </main>
     </div>

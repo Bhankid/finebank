@@ -3,6 +3,7 @@
 import CheckingAccount from '@/app/components/CreditCardBalance/CheckingAccount';
 import CreditCardBalance from '@/app/components/CreditCardBalance/CreditCardBalance';
 import InvestmentCard from '@/app/components/CreditCardBalance/InvestmentCard';
+import LoanCard from '@/app/components/CreditCardBalance/LoanCard';
 import SavingsAccount from '@/app/components/CreditCardBalance/SavingsAccount';
 import Header from '@/app/components/Header/Header';
 import Sidebar from '@/app/components/SideBar/Sidebar';
@@ -23,6 +24,7 @@ const BalancePage = () => {
         <CheckingAccount />
           <SavingsAccount />
           <InvestmentCard />
+          <LoanCard />
         </div> 
       </main>
     </div>

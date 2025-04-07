@@ -1,6 +1,16 @@
 'use client';
 
 import React, { useState } from 'react';
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer
+} from 'recharts';
 
 interface MonthlyData {
   month: string;
@@ -11,19 +21,40 @@ interface MonthlyData {
 const ExpensesComparison: React.FC = () => {
   const [comparisonType, setComparisonType] = useState<'monthly' | 'quarterly' | 'yearly'>('monthly');
   
+  // Data with actual values in dollars for better visualization
   const monthlyData: MonthlyData[] = [
-    { month: 'Jan', thisWeek: 1.0, lastWeek: 0.75 },
-    { month: 'Feb', thisWeek: 0.75, lastWeek: 0.5 },
-    { month: 'Mar', thisWeek: 0.5, lastWeek: 0.75 },
-    { month: 'Apr', thisWeek: 1.0, lastWeek: 0.5 },
-    { month: 'May', thisWeek: 0.75, lastWeek: 0.75 },
-    { month: 'Jun', thisWeek: 0.25, lastWeek: 0.5 },
-    { month: 'Jul', thisWeek: 0.75, lastWeek: 0.5 },
-    { month: 'Aug', thisWeek: 1.0, lastWeek: 0.25 },
-    { month: 'Sep', thisWeek: 0.75, lastWeek: 0.75 },
-    { month: 'Oct', thisWeek: 0.5, lastWeek: 0.5 },
-    { month: 'Nov', thisWeek: 0.25, lastWeek: 0.5 },
-    { month: 'Dec', thisWeek: 0.75, lastWeek: 0.75 },
+    { month: 'Jan', thisWeek: 250000, lastWeek: 187500 },
+    { month: 'Feb', thisWeek: 187500, lastWeek: 125000 },
+    { month: 'Mar', thisWeek: 125000, lastWeek: 187500 },
+    { month: 'Apr', thisWeek: 250000, lastWeek: 125000 },
+    { month: 'May', thisWeek: 187500, lastWeek: 187500 },
+    { month: 'Jun', thisWeek: 62500, lastWeek: 125000 },
+    { month: 'Jul', thisWeek: 187500, lastWeek: 125000 },
+    { month: 'Aug', thisWeek: 250000, lastWeek: 62500 },
+    { month: 'Sep', thisWeek: 187500, lastWeek: 187500 },
+    { month: 'Oct', thisWeek: 125000, lastWeek: 125000 },
+    { month: 'Nov', thisWeek: 62500, lastWeek: 125000 },
+    { month: 'Dec', thisWeek: 187500, lastWeek: 187500 },
+  ];
+
+  // Quarterly data aggregation
+  const quarterlyData = [
+    { month: 'Q1', thisWeek: (monthlyData[0].thisWeek + monthlyData[1].thisWeek + monthlyData[2].thisWeek) / 3, 
+      lastWeek: (monthlyData[0].lastWeek + monthlyData[1].lastWeek + monthlyData[2].lastWeek) / 3 },
+    { month: 'Q2', thisWeek: (monthlyData[3].thisWeek + monthlyData[4].thisWeek + monthlyData[5].thisWeek) / 3, 
+      lastWeek: (monthlyData[3].lastWeek + monthlyData[4].lastWeek + monthlyData[5].lastWeek) / 3 },
+    { month: 'Q3', thisWeek: (monthlyData[6].thisWeek + monthlyData[7].thisWeek + monthlyData[8].thisWeek) / 3, 
+      lastWeek: (monthlyData[6].lastWeek + monthlyData[7].lastWeek + monthlyData[8].lastWeek) / 3 },
+    { month: 'Q4', thisWeek: (monthlyData[9].thisWeek + monthlyData[10].thisWeek + monthlyData[11].thisWeek) / 3, 
+      lastWeek: (monthlyData[9].lastWeek + monthlyData[10].lastWeek + monthlyData[11].lastWeek) / 3 },
+  ];
+
+  // Yearly data aggregation
+  const yearlyData = [
+    { month: 'Year', 
+      thisWeek: monthlyData.reduce((sum, item) => sum + item.thisWeek, 0) / 12, 
+      lastWeek: monthlyData.reduce((sum, item) => sum + item.lastWeek, 0) / 12 
+    }
   ];
 
   const toggleComparisonType = () => {
@@ -36,8 +67,45 @@ const ExpensesComparison: React.FC = () => {
     }
   };
 
+  // Select data based on comparison type
+  const displayData = 
+    comparisonType === 'monthly' ? monthlyData : 
+    comparisonType === 'quarterly' ? quarterlyData : yearlyData;
+
+  // Format currency for tooltip
+  const formatCurrency = (value: number) => {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(value);
+  };
+
+  // Custom tooltip
+  const CustomTooltip = ({ active, payload, label }: {
+    active?: boolean;
+    payload?: Array<{ value: number; }>;
+    label?: string;
+  }) => {
+    if (active && payload && payload.length) {
+      return (
+        <div className="bg-white p-3 shadow-md rounded border border-gray-200">
+          <p className="font-semibold">{label}</p>
+          <p className="text-teal-600">
+            This Week: {formatCurrency(payload[0].value)}
+          </p>
+          <p className="text-gray-600">
+            Last Week: {formatCurrency(payload[1].value)}
+          </p>
+        </div>
+      );
+    }
+    return null;
+  };
+
   return (
-    <div className="p-6">
+    <div className="p-6 bg-gray-50">
       <h1 className="text-2xl font-semibold text-gray-700 mb-4">Expenses Comparison</h1>
       <div className="bg-white rounded-lg shadow p-4">
         <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
@@ -61,42 +129,45 @@ const ExpensesComparison: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead>
-              <tr>
-                <th className="text-left text-gray-500 p-2"> </th>
-                <th className="text-left text-gray-500 p-2">$250k</th>
-                <th className="text-left text-gray-500 p-2">$50k</th>
-                <th className="text-left text-gray-500 p-2">$10k</th>
-                <th className="text-left text-gray-500 p-2">$2k</th>
-                <th className="text-left text-gray-500 p-2">$0</th>
-              </tr>
-            </thead>
-            <tbody>
-              {monthlyData.map((data) => (
-                <tr key={data.month}>
-                  <td className="text-gray-500 p-2">{data.month}</td>
-                  <td className="h-32 p-2">
-                    <div className="relative h-full">
-                      <div 
-                        className="absolute bottom-0 left-0 w-1/2 bg-gray-300"
-                        style={{ height: `${data.lastWeek * 100}%` }}
-                      ></div>
-                      <div 
-                        className="absolute bottom-0 right-0 w-1/2 bg-teal-600"
-                        style={{ height: `${data.thisWeek * 100}%` }}
-                      ></div>
-                    </div>
-                  </td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        
+        {/* Chart container with fixed height to ensure it doesn't take full screen */}
+        <div className="w-full" style={{ height: '400px' }}>
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart
+              data={displayData}
+              margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+              barGap={0}
+              barCategoryGap={comparisonType === 'yearly' ? '35%' : '15%'}
+            >
+              <CartesianGrid strokeDasharray="3 3" vertical={false} />
+              <XAxis dataKey="month" />
+              <YAxis 
+                tickFormatter={(value) => {
+                  if (value === 0) return '$0';
+                  if (value === 50000) return '$50k';
+                  if (value === 100000) return '$100k';
+                  if (value === 150000) return '$150k';
+                  if (value === 200000) return '$200k';
+                  if (value === 250000) return '$250k';
+                  return '';
+                }}
+              />
+              <Tooltip content={<CustomTooltip />} />
+              <Legend wrapperStyle={{ bottom: 0 }} />
+              <Bar 
+                dataKey="thisWeek" 
+                name="This Week" 
+                fill="#0d9488" // teal-600
+                radius={[4, 4, 0, 0]}
+              />
+              <Bar 
+                dataKey="lastWeek" 
+                name="Last Week" 
+                fill="#d1d5db" // gray-300
+                radius={[4, 4, 0, 0]}
+              />
+            </BarChart>
+          </ResponsiveContainer>
         </div>
       </div>
     </div>

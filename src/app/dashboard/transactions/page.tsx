@@ -2,8 +2,7 @@
 
 import Header from "@/app/components/Header/Header";
 import Sidebar from "@/app/components/SideBar/Sidebar";
-import AccountDetails from "@/app/components/Transactions/AccountDetails";
-import TransactionHistory from "@/app/components/Transactions/TransactionHistory";
+import RecentTransactions from "@/app/components/Transactions/RecentTransactions";
 
 
 
@@ -18,8 +17,7 @@ const TransactionsPage = () => {
         {/* Main Content */}
           <main className="flex-1 ml-64">
               <Header userName="Tanzir" />
-              <AccountDetails />
-              <TransactionHistory />
+              <RecentTransactions />  
          </main>
     </div>
   );

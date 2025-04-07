@@ -1,6 +1,7 @@
 import Sidebar from '@/app/components/SideBar/Sidebar';
 import ExpensesComparison from '@/app/components/Expenses/ExpensesComparison';
 import Header from '@/app/components/Header/Header';
+import ExpensesBreakdown from '@/app/components/Expenses/ExpensesBreakdown';
 
 export const metadata = {
   title: 'Expenses Comparison | Finebank',
@@ -16,6 +17,7 @@ export default function ExpensesPage() {
           <main className="flex-1 ml-64">
             <Header userName="Tanzir" />
       <ExpensesComparison />
+       <ExpensesBreakdown />
       </main>
     </div>
   );

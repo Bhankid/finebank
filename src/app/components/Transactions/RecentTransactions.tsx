@@ -28,19 +28,19 @@ const RecentTransactions: React.FC = () => {
       <h1 className="text-2xl font-semibold text-gray-700 mb-6">Recent Transaction</h1>
       <div className="flex space-x-4 mb-6">
         <button 
-          className={`pb-2 ${activeTab === 'all' ? 'text-teal-500 border-b-2 border-teal-500' : 'text-gray-500'}`}
+          className={`pb-2 cursor-pointer ${activeTab === 'all' ? 'text-teal-500 border-b-2 border-teal-500' : 'text-gray-500'}`}
           onClick={() => setActiveTab('all')}
         >
           All
         </button>
         <button 
-          className={`pb-2 ${activeTab === 'revenue' ? 'text-teal-500 border-b-2 border-teal-500' : 'text-gray-500'}`}
+          className={`pb-2 cursor-pointer ${activeTab === 'revenue' ? 'text-teal-500 border-b-2 border-teal-500' : 'text-gray-500'}`}
           onClick={() => setActiveTab('revenue')}
         >
           Revenue
         </button>
         <button 
-          className={`pb-2 ${activeTab === 'expenses' ? 'text-teal-500 border-b-2 border-teal-500' : 'text-gray-500'}`}
+          className={`pb-2 cursor-pointer ${activeTab === 'expenses' ? 'text-teal-500 border-b-2 border-teal-500' : 'text-gray-500'}`}
           onClick={() => setActiveTab('expenses')}
         >
           Expenses

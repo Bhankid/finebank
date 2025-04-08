@@ -1,3 +1,4 @@
+import ExpenseGoals from '@/app/components/Goals/ExpenseGoals';
 import SavingsGoal from '@/app/components/Goals/SavingsGoal';
 import SavingSummary from '@/app/components/Goals/SavingSummary';
 import Header from '@/app/components/Header/Header';
@@ -31,6 +32,7 @@ export default function GoalsPage() {
     <SavingSummary />
   </div>
 </div>
+    <ExpenseGoals />
       </main>
     </div>
   );

@@ -91,7 +91,7 @@ const Goals: React.FC<GoalsProps> = ({
         </div>
         
         {/* Adding an empty div with py-2 to match the height of the TotalBalance component */}
-        <div className="py-4"></div>
+        <div className="py-2"></div>
       </div>
     </div>
   );

@@ -48,32 +48,32 @@ const TotalBalance: React.FC<TotalBalanceProps> = ({
   };
 
   return (
-    <div className={className}>
+    <div className={`${className} w-full`}>
       <h1 className="text-gray-600 text-xl mb-4">Total Balance</h1>
       
-      <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
-        <div className="flex justify-between items-center mb-4">
+      <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md mx-auto lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl">
+        <div className="flex justify-between items-center mb-6">
           <div className="text-3xl font-bold text-black">{formatCurrency(totalBalance)}</div>
           <span className="text-gray-600">All Accounts</span>
         </div>
         
-        <div className="bg-teal-500 text-white rounded-lg p-4 flex justify-between items-center mb-4">
+        <div className="bg-teal-500 text-white rounded-lg p-5 flex justify-between items-center mb-6 min-h-[120px]">
           <div>
             <div className="text-sm">Account Type</div>
             <div className="text-lg font-bold">{currentAccount.type}</div>
-            <div className="text-sm">{currentAccount.number}</div>
+            <div className="text-sm mt-1">{currentAccount.number}</div>
           </div>
           <div className="flex items-center">
             <div className="text-2xl font-bold mr-2">{formatCurrency(currentAccount.balance)}</div>
             <FaArrowRight className="text-white" />
           </div>
           {currentAccount.logo && (
-            <div className="ml-4 relative w-10 h-10">
+            <div className="ml-4 relative w-12 h-12">
               <Image 
                 src={currentAccount.logo} 
                 alt={`${currentAccount.name} logo`} 
                 fill
-                sizes="40px"
+                sizes="(max-width: 768px) 40px, (max-width: 1200px) 48px, 64px"
                 className="rounded-full object-cover"
                 priority
               />
@@ -81,18 +81,18 @@ const TotalBalance: React.FC<TotalBalanceProps> = ({
           )}
         </div>
         
-        <div className="flex justify-between items-center text-gray-400">
+        <div className="flex justify-between items-center text-gray-400 py-2">
           <button 
             onClick={handlePrevious}
-            className="flex items-center hover:text-teal-600 transition-colors"
+            className="flex items-center hover:text-teal-600 transition-colors cursor-pointer px-2 py-1"
           >
             <FaChevronLeft className="mr-1" /> Previous
           </button>
-          <div className="flex space-x-1">
+          <div className="flex space-x-2">
             {accounts.map((_, index) => (
               <span 
                 key={index}
-                className={`h-2 w-2 rounded-full ${
+                className={`h-2.5 w-2.5 rounded-full ${
                   index === currentCardIndex ? 'bg-teal-500' : 'bg-gray-300'
                 }`}
               ></span>
@@ -100,7 +100,7 @@ const TotalBalance: React.FC<TotalBalanceProps> = ({
           </div>
           <button 
             onClick={handleNext}
-            className="flex items-center hover:text-teal-600 transition-colors"
+            className="flex items-center hover:text-teal-600 transition-colors cursor-pointer px-2 py-1"
           >
             Next <FaChevronRight className="ml-1" />
           </button>

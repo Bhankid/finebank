@@ -15,7 +15,7 @@ interface Bill {
   amount: string;
 }
 
-const UpcomingBills: React.FC = () => {
+const UpcomingBills: React.FC<{ className?: string }> = ({ className = '' }) => {
   const bills: Bill[] = [
     {
       id: '1',
@@ -42,88 +42,88 @@ const UpcomingBills: React.FC = () => {
   ];
 
   return (
-    <div className="max-w-4xl mx-auto mt-10 px-4 sm:px-6 lg:px-8">
-      <h1 className="text-xl font-semibold text-gray-700 mb-4">Upcoming Bills</h1>
+    <div className={`${className} w-full`}>
+      <h1 className="text-gray-600 text-xl mb-4">Upcoming Bills</h1>
       
-      {/* Desktop View */}
-      <div className="hidden md:block bg-white shadow-md rounded-lg">
-        <div className="grid grid-cols-5 gap-4 p-4 border-b">
-          <div className="col-span-1 text-gray-500 font-semibold">Due Date</div>
-          <div className="col-span-1 text-gray-500 font-semibold">Logo</div>
-          <div className="col-span-2 text-gray-500 font-semibold">Item Description</div>
-          <div className="col-span-1 text-gray-500 font-semibold">Last Charge</div>
-          <div className="col-span-1 text-gray-500 font-semibold">Amount</div>
-        </div>
-        
-        {bills.map((bill) => (
-          <div key={bill.id} className="grid grid-cols-5 gap-4 p-4 border-b last:border-b-0">
-            <div className="col-span-1 flex flex-col items-center">
-              <div className="bg-gray-200 text-gray-700 rounded-md px-2 py-1">{bill.dueMonth}</div>
-              <div className="text-2xl font-semibold text-gray-700">{bill.dueDay}</div>
-            </div>
-            <div className="col-span-1 flex items-center">
-              <div className="relative w-10 h-10">
-                <Image 
-                  src={bill.logoUrl} 
-                  alt={`${bill.companyName} logo`} 
-                  fill 
-                  sizes="40px"
-                  className="object-cover"
-                />
-              </div>
-              <span className="ml-2 text-gray-700 font-semibold">{bill.companyName}</span>
-            </div>
-            <div className="col-span-2">
-              <div className="text-gray-700 font-semibold">{bill.title}</div>
-              <div className="text-gray-500 text-sm">{bill.description}</div>
-            </div>
-            <div className="col-span-1 text-gray-500">{bill.lastChargeDate}</div>
-            <div className="col-span-1 flex items-center justify-center">
-              <div className="bg-gray-200 text-gray-700 rounded-md px-4 py-2">{bill.amount}</div>
-            </div>
+      <div className="bg-white rounded-lg shadow-lg w-full max-w-md mx-auto lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl">
+        {/* Desktop View */}
+        <div className="hidden md:block">
+          <div className="grid grid-cols-5 gap-4 p-6 border-b">
+            <div className="col-span-1 text-gray-600 font-semibold">Due Date</div>
+            <div className="col-span-1 text-gray-600 font-semibold">Logo</div>
+            <div className="col-span-1 text-gray-600 font-semibold">Item</div>
+            <div className="col-span-1 text-gray-600 font-semibold">Last Charge</div>
+            <div className="col-span-1 text-gray-600 font-semibold">Amount</div>
           </div>
-        ))}
-      </div>
-      
-      {/* Mobile View */}
-      <div className="md:hidden space-y-4">
-        {bills.map((bill) => (
-          <div key={bill.id} className="bg-white shadow-md rounded-lg p-4">
-            <div className="flex justify-between items-center mb-3">
-              <div className="flex items-center">
-                <div className="relative w-10 h-10 mr-2">
-                  <Image 
-                    src={bill.logoUrl} 
-                    alt={`${bill.companyName} logo`} 
-                    fill 
-                    sizes="40px"
-                    className="object-cover"
+          
+          {bills.map((bill) => (
+            <div key={bill.id} className="grid grid-cols-5 gap-4 p-6 border-b last:border-b-0">
+              <div className="col-span-1 flex flex-col items-center">
+                <div className="bg-gray-200 text-gray-700 rounded-md px-2 py-1">{bill.dueMonth}</div>
+                <div className="text-2xl font-semibold text-gray-700">{bill.dueDay}</div>
+              </div>
+              <div className="col-span-1 flex items-center">
+                <div className="relative w-10 h-10">
+                  <Image
+                    src={bill.logoUrl}
+                    alt={`${bill.companyName} logo`}
+                    fill
+                    sizes="(max-width: 768px) 40px, (max-width: 1200px) 48px, 64px"
+                    className="object-cover rounded-full"
                   />
                 </div>
-                <span className="text-gray-700 font-semibold">{bill.companyName}</span>
               </div>
-              <div className="flex flex-col items-center">
-                <div className="bg-gray-200 text-gray-700 rounded-md px-2 py-1 text-xs">{bill.dueMonth}</div>
-                <div className="text-xl font-semibold text-gray-700">{bill.dueDay}</div>
+              <div className="col-span-1">
+                <div className="text-gray-700 font-semibold">{bill.title}</div>
               </div>
-            </div>
-            
-            <div className="mb-3">
-              <div className="text-gray-700 font-semibold">{bill.title}</div>
-              <div className="text-gray-500 text-sm">{bill.description}</div>
-            </div>
-            
-            <div className="flex justify-between items-center">
-              <div>
-                <div className="text-xs text-gray-500 font-medium">Last Charge</div>
-                <div className="text-gray-600">{bill.lastChargeDate}</div>
-              </div>
-              <div className="bg-gray-200 text-gray-700 rounded-md px-4 py-2 font-medium">
-                {bill.amount}
+              <div className="col-span-1 text-gray-600">{bill.lastChargeDate}</div>
+              <div className="col-span-1 flex items-center justify-center">
+                <div className="bg-gray-200 text-gray-700 rounded-md px-4 py-2 font-medium">{bill.amount}</div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+        
+        {/* Mobile View */}
+        <div className="md:hidden">
+          {bills.map((bill) => (
+            <div key={bill.id} className="p-6 border-b last:border-b-0">
+              <div className="flex justify-between items-center mb-3">
+                <div className="flex items-center">
+                  <div className="relative w-10 h-10 mr-2">
+                    <Image
+                      src={bill.logoUrl}
+                      alt={`${bill.companyName} logo`}
+                      fill
+                      sizes="40px"
+                      className="object-cover rounded-full"
+                    />
+                  </div>
+                  <span className="text-gray-700 font-semibold">{bill.companyName}</span>
+                </div>
+                <div className="flex flex-col items-center">
+                  <div className="bg-gray-200 text-gray-700 rounded-md px-2 py-1 text-xs">{bill.dueMonth}</div>
+                  <div className="text-xl font-semibold text-gray-700">{bill.dueDay}</div>
+                </div>
+              </div>
+              
+              <div className="mb-3">
+                <div className="text-gray-700 font-semibold">{bill.title}</div>
+                <div className="text-gray-600 text-sm line-clamp-2">{bill.description}</div>
+              </div>
+              
+              <div className="flex justify-between items-center">
+                <div>
+                  <div className="text-xs text-gray-600 font-medium">Last Charge</div>
+                  <div className="text-gray-600">{bill.lastChargeDate}</div>
+                </div>
+                <div className="bg-gray-200 text-gray-700 rounded-md px-4 py-2 font-medium">
+                  {bill.amount}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

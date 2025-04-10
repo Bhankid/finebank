@@ -20,7 +20,7 @@ const BalancePage = () => {
       {/* Main Content */}
       <main className="flex-1 md:ml-64">
         <Header userName="Tanzir" />
-       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-4">
+       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-4 px-6">
         <CreditCardBalance />
         <CheckingAccount />
           <SavingsAccount />

@@ -16,8 +16,11 @@ const TransactionsPage = () => {
 
         {/* Main Content */}
           <main className="flex-1 ml-64">
-              <Header userName="Tanzir" />
-              <RecentTransactions />  
+        <Header userName="Tanzir" />
+        <div className="p-6">
+          <RecentTransactions /> 
+        </div>
+               
          </main>
     </div>
   );

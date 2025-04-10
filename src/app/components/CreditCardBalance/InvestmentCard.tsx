@@ -1,6 +1,6 @@
 'use client';
 
-import { FaArrowRight } from 'react-icons/fa';
+import { FaChevronRight } from 'react-icons/fa6';
 
 interface InvestmentCardProps {
   bankName?: string;
@@ -47,15 +47,15 @@ const InvestmentCard: React.FC<InvestmentCardProps> = ({
       <div className="flex justify-between items-center">
         <button 
           onClick={onRemove}
-          className="text-teal-600 hover:text-teal-700 transition-colors"
+          className="text-teal-600 hover:text-teal-700 transition-colors cursor-pointer"
         >
           Remove
         </button>
         <button 
           onClick={onDetails}
-          className="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-lg flex items-center transition-colors"
+          className="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-lg flex items-center transition-colors cursor-pointer"
         >
-          Details <FaArrowRight className="ml-2" />
+          Details <FaChevronRight className="ml-2" />
         </button>
       </div>
     </div>

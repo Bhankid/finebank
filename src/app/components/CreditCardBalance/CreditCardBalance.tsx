@@ -33,8 +33,8 @@ const CreditCardBalance: React.FC<CreditCardBalanceProps> = ({
   };
 
   return (
-    <div className={`max-w-sm ${className}`}>
-      <div className="bg-white p-6 rounded-lg shadow-md">
+    <div className={`bg-white shadow-md rounded-lg p-6 ${className}`}>
+      <div className="bg-white">
         <h2 className="text-gray-600 text-lg mb-4">Balances</h2>
         <div className="bg-gray-50 p-4 rounded-lg">
           <div className="flex justify-between items-center mb-4">
@@ -58,15 +58,15 @@ const CreditCardBalance: React.FC<CreditCardBalanceProps> = ({
           <div className="flex justify-between items-center">
             <button 
               onClick={onRemove}
-              className="text-teal-500 hover:text-teal-600 transition-colors"
+              className="text-teal-500 hover:text-teal-600 transition-colors cursor-pointer"
             >
               Remove
             </button>
             <button 
               onClick={onDetails}
-              className="bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded-lg flex items-center transition-colors"
+              className="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-lg flex items-center transition-colors cursor-pointer"
             >
-              Details <FaChevronRight className="ml-1" />
+              Details <FaChevronRight className="ml-2" />
             </button>
           </div>
         </div>

@@ -32,7 +32,7 @@ const SavingsAccount: React.FC<SavingsAccountProps> = ({
   };
 
   return (
-    <div className={`bg-white rounded-lg shadow-lg p-6 max-w-sm w-full text-gray-600 ${className}`}>
+    <div className={`bg-white rounded-lg shadow-lg p-6 w-full text-gray-600 ${className}`}>
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-lg font-semibold">{accountType}</h2>
         <span className="text-gray-600">{bankName}</span>

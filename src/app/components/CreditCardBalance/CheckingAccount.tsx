@@ -35,7 +35,7 @@ const CheckingAccount: React.FC<CheckingAccountProps> = ({
   };
 
   return (
-    <div className={`bg-white p-6 rounded-lg shadow-md w-full max-w-sm ${className}`}>
+    <div className={`bg-white p-6 rounded-lg shadow-md w-full ${className}`}>
       <div className="flex justify-between items-center mb-4">
         <span className="text-gray-600 font-semibold">{accountType}</span>
         <div className="flex items-center">

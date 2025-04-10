@@ -105,16 +105,21 @@ const ExpensesBreakdown: React.FC<ExpensesBreakdownProps> = ({
   className = '',
 }) => {
   return (
-    <div className={`max-w-4xl mx-auto ${className}`}>
-      <div className="bg-white p-4 rounded-lg shadow-md">
-        <div className="flex justify-between items-center mb-4">
-          <h1 className="text-xl font-semibold text-gray-700">Expenses Breakdown</h1>
+    <div className={`${className} w-full`}>
+      <h1 className="text-gray-600 text-xl mb-4">Expenses Breakdown</h1>
+      
+      <div className="bg-white rounded-lg shadow-lg w-full max-w-md mx-auto lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl">
+        <div className="flex justify-between items-center p-6 border-b">
+          <h2 className="text-lg font-semibold text-gray-700">Monthly Overview</h2>
           <div className="text-sm text-gray-500">*Compare to last month</div>
         </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        
+        <div className="p-6 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-6">
           {expenses.map((expense, index) => (
-            <div key={index} className="border border-gray-100 rounded-lg">
+            <div 
+              key={index} 
+              className="border border-gray-100 rounded-lg shadow-sm w-full"
+            >
               <ExpenseCard
                 icon={expense.icon}
                 category={expense.category}

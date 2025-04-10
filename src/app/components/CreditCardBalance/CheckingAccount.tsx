@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { FaChevronRight } from 'react-icons/fa6';
 
 interface CheckingAccountProps {
   accountType?: string;
@@ -60,15 +61,15 @@ const CheckingAccount: React.FC<CheckingAccountProps> = ({
       <div className="flex justify-between items-center">
         <button 
           onClick={onRemove}
-          className="text-teal-600 font-medium hover:text-teal-700 transition-colors"
+          className="text-teal-600 font-medium hover:text-teal-700 transition-colors cursor-pointer"
         >
           Remove
         </button>
-        <button 
+         <button 
           onClick={onDetails}
-          className="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-lg transition-colors"
+          className="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-lg flex items-center transition-colors cursor-pointer"
         >
-          Details
+          Details <FaChevronRight className="ml-2" />
         </button>
       </div>
     </div>

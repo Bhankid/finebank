@@ -24,7 +24,7 @@ const RecentTransactions: React.FC = () => {
   };
 
   return (
-    <div className="max-w-6xl mx-auto p-6 bg-white rounded-lg shadow-md mt-10">
+    <div className="max-w-6xl p-6 bg-white rounded-lg shadow-md mt-6">
       <h1 className="text-2xl font-semibold text-gray-700 mb-6">Recent Transaction</h1>
       <div className="flex space-x-4 mb-6">
         <button 

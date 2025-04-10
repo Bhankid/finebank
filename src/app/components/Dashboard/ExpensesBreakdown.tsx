@@ -11,26 +11,33 @@ interface ExpenseCardProps {
   trend: 'up' | 'down';
 }
 
-const ExpenseCard: React.FC<ExpenseCardProps> = ({ icon, category, amount, percentage, trend }) => (
-  <div className="flex flex-col items-center p-4 w-full relative">
-    {/* Vertical separator line (right border) */}
-    <div className="absolute right-0 top-4 bottom-4 border-r border-gray-200"></div>
-    
-    <div className="bg-gray-100 p-3 rounded-full mb-2 w-14 h-14 flex items-center justify-center">
+const ExpenseCard: React.FC<ExpenseCardProps> = ({
+  icon,
+  category,
+  amount,
+  percentage,
+  trend,
+}) => (
+  <div className="flex items-center justify-between p-4 w-full relative gap-4 sm:gap-6">
+    <div className="flex-shrink-0 bg-gray-100 p-2 rounded-full w-12 h-12 flex items-center justify-center">
       <Image
         src={icon}
         alt={`${category} icon`}
-        width={32}
-        height={32}
-        className="object-contain"
+        width={28}
+        height={28}
+        className="object-contain w-8 h-8"
       />
     </div>
-    <div className="text-center">
-      <div className="text-gray-500">{category}</div>
-      <div className="text-xl font-bold">{amount}</div>
-      <div className="text-sm text-gray-500">{percentage}</div>
+    <div className="flex flex-col flex-grow">
+      <div className="text-gray-500 text-sm">{category}</div>
+      <div className="text-lg font-bold">{amount}</div>
+      <div className="text-sm text-gray-400">{percentage}</div>
     </div>
-    <div className={`text-sm mt-2 flex items-center ${trend === 'up' ? 'text-red-500' : 'text-green-500'}`}>
+    <div
+      className={`flex items-center text-sm font-medium ${
+        trend === 'up' ? 'text-green-500' : 'text-red-500'
+      }`}
+    >
       {trend === 'up' ? <FaArrowUp className="mr-1" /> : <FaArrowDown className="mr-1" />}
       {percentage}
     </div>
@@ -53,87 +60,70 @@ interface ExpensesBreakdownProps {
 const ExpensesBreakdown: React.FC<ExpensesBreakdownProps> = ({
   expenses = [
     {
-      icon: "/home.png",
-      category: "Housing",
-      amount: "$250.00",
-      percentage: "15%",
-      trend: "up"
+      icon: '/home.png',
+      category: 'Housing',
+      amount: '$250.00',
+      percentage: '15%',
+      trend: 'up',
     },
     {
-      icon: "/food.png",
-      category: "Food",
-      amount: "$350.00",
-      percentage: "08%",
-      trend: "down"
+      icon: '/food.png',
+      category: 'Food',
+      amount: '$350.00',
+      percentage: '08%',
+      trend: 'down',
     },
     {
-      icon: "/tnt.png",
-      category: "Transportation",
-      amount: "$50.00",
-      percentage: "12%",
-      trend: "down"
+      icon: '/tnt.png',
+      category: 'Transportation',
+      amount: '$50.00',
+      percentage: '12%',
+      trend: 'down',
     },
     {
-      icon: "/Ent.png",
-      category: "Entertainment",
-      amount: "$80.00",
-      percentage: "15%",
-      trend: "down"
+      icon: '/Ent.png',
+      category: 'Entertainment',
+      amount: '$80.00',
+      percentage: '15%',
+      trend: 'down',
     },
     {
-      icon: "/shopping.png",
-      category: "Shopping",
-      amount: "$420.00",
-      percentage: "25%",
-      trend: "up"
+      icon: '/shopping.png',
+      category: 'Shopping',
+      amount: '$420.00',
+      percentage: '25%',
+      trend: 'up',
     },
     {
-      icon: "/others.png",
-      category: "Others",
-      amount: "$650.00",
-      percentage: "23%",
-      trend: "up"
-    }
+      icon: '/others.png',
+      category: 'Others',
+      amount: '$650.00',
+      percentage: '23%',
+      trend: 'up',
+    },
   ],
-  className = ''
+  className = '',
 }) => {
   return (
-    <div className={`max-w-4xl ${className}`}>
-      <div className="bg-white p-6 rounded-lg shadow-md">
+    <div className={`max-w-4xl mx-auto ${className}`}>
+      <div className="bg-white p-4 rounded-lg shadow-md">
         <div className="flex justify-between items-center mb-4">
           <h1 className="text-xl font-semibold text-gray-700">Expenses Breakdown</h1>
           <div className="text-sm text-gray-500">*Compare to last month</div>
         </div>
-        
-        {/* Grid with 3 columns and horizontal dividers between rows */}
-        <div className="grid grid-cols-3 divide-y divide-gray-200">
-          {/* First row */}
-          <div className="col-span-3 grid grid-cols-3">
-            {expenses.slice(0, 3).map((expense, index) => (
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {expenses.map((expense, index) => (
+            <div key={index} className="border border-gray-100 rounded-lg">
               <ExpenseCard
-                key={index}
                 icon={expense.icon}
                 category={expense.category}
                 amount={expense.amount}
                 percentage={expense.percentage}
-                trend={expense.trend as 'up' | 'down'}
+                trend={expense.trend}
               />
-            ))}
-          </div>
-          
-          {/* Second row */}
-          <div className="col-span-3 grid grid-cols-3">
-            {expenses.slice(3, 6).map((expense, index) => (
-              <ExpenseCard
-                key={index + 3}
-                icon={expense.icon}
-                category={expense.category}
-                amount={expense.amount}
-                percentage={expense.percentage}
-                trend={expense.trend as 'up' | 'down'}
-              />
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>

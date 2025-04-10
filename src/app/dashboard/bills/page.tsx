@@ -15,7 +15,9 @@ export default function BillsPage() {
       {/* Main Content */}
       <main className="flex-1 ml-64">
         <Header userName="Tanzir" />
-      <UpcomingBills />
+        <div className="p-6">
+           <UpcomingBills />
+        </div>
       </main>
     </div>
   );

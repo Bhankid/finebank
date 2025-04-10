@@ -43,9 +43,9 @@ const UpcomingBills: React.FC<{ className?: string }> = ({ className = '' }) => 
 
   return (
     <div className={`${className} w-full`}>
-      <h1 className="text-gray-600 text-xl mb-4">Upcoming Bills</h1>
+      <h1 className="text-gray-600 text-xl my-4">Upcoming Bills</h1>
       
-      <div className="bg-white rounded-lg shadow-lg w-full max-w-md mx-auto lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl">
+      <div className="bg-white rounded-lg shadow-lg w-full">
         {/* Desktop View */}
         <div className="hidden md:block">
           <div className="grid grid-cols-12 gap-2 p-6 border-b">

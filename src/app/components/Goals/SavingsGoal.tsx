@@ -29,7 +29,7 @@ const SavingsGoal: React.FC<SavingsGoalProps> = ({
   ];
 
   // Colors for the pie chart
-  const COLORS = ['#14b8a6', '#e2e8f0']; // teal-500 and gray-200
+  const COLORS = ['#14b8a6', '#e2e8f0']; 
 
   // Format currency
   const formatCurrency = (value: number): string => {
@@ -111,7 +111,7 @@ const SavingsGoal: React.FC<SavingsGoalProps> = ({
       
       <div className="flex justify-center mt-4">
         <button 
-          className="bg-teal-500 text-white px-4 py-2 rounded-md flex items-center hover:bg-teal-600 transition-colors"
+          className="bg-teal-500 text-white px-4 py-2 rounded-md flex items-center hover:bg-teal-600 transition-colors cursor-pointer"
           onClick={onAdjustGoal}
         >
           <span>Adjust Goal</span>

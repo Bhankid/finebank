@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { FaUserPlus } from 'react-icons/fa';
+import Image from 'next/image';
 
 interface UserProfile {
   fullName: string;
@@ -62,8 +63,8 @@ const AccountTab: React.FC<AccountTabProps> = ({
           <h2 className="text-gray-700 font-semibold">Phone Number</h2>
           <p className="text-gray-500">{profile.phoneNumber}</p>
         </div>
-        <button 
-          className="bg-teal-500 text-white px-4 py-2 rounded hover:bg-teal-600 transition-colors"
+        <button
+          className="bg-teal-500 text-white px-4 py-2 rounded hover:bg-teal-600 transition-colors cursor-pointer"
           onClick={handleUpdateProfile}
         >
           Update Profile
@@ -75,19 +76,24 @@ const AccountTab: React.FC<AccountTabProps> = ({
           <label className="cursor-pointer">
             <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 hover:border-teal-500 transition-colors">
               {profileImage ? (
-                <img 
-                  src={profileImage} 
-                  alt="Profile" 
-                  className="w-32 h-32 rounded-full mx-auto mb-4 object-cover"
-                />
+                <div className="relative w-32 h-32 rounded-full mx-auto mb-4 overflow-hidden">
+                  <Image
+                    src={profileImage}
+                    alt="Profile"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 128px"
+                    className="object-cover"
+                    priority
+                  />
+                </div>
               ) : (
                 <FaUserPlus className="text-gray-300 text-4xl mx-auto mb-4" />
               )}
               <p className="text-gray-500">Upload your photo</p>
-              <input 
-                type="file" 
-                accept="image/*" 
-                className="hidden" 
+              <input
+                type="file"
+                accept="image/*"
+                className="hidden"
                 onChange={handleImageUpload}
               />
             </div>

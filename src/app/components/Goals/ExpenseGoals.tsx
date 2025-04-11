@@ -34,7 +34,7 @@ const ExpenseGoals: React.FC<ExpenseGoalsProps> = ({
   ];
 
   return (
-    <div className="p-6 bg-gray-100 rounded-lg">
+    <div className="p-6 bg-white">
       <h1 className="text-xl font-semibold mb-4 text-gray-400">Expenses Goals by Category</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {categories.map((category, index) => (
@@ -52,7 +52,7 @@ const ExpenseGoals: React.FC<ExpenseGoalsProps> = ({
               </div>
             </div>
             <button 
-              className="flex items-center text-teal-600 border border-teal-600 rounded-lg px-3 py-1 hover:bg-teal-50 transition-colors"
+              className="flex items-center text-teal-600 border border-teal-600 rounded-lg px-3 py-1 hover:bg-teal-50 transition-colors cursor-pointer"
               onClick={() => onAdjust(category.name)}
             >
               Adjust <FaPen className="ml-2 cursor-pointer" />
